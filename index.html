@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThriEVe — Reconnecting the Driver</title>
+  <meta name="description" content="ThriEVe makes the interface — paired with a sim-racing H-pattern shifter — that brings a real, functional manual shift to electric cars. Reconnecting the driver to the car." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body id="top">
+  <header class="topbar">
+    <a href="#top" class="brand">
+      <img class="brand-mark" src="assets/ev-symbol.png" alt="" />
+      <span>Thri<span class="ev">EV</span>e</span>
+    </a>
+    <nav class="toplinks" aria-label="Primary">
+      <a href="#story1">The Shift</a>
+      <a href="#shifter">Shifter</a>
+      <a href="#interface">Interface</a>
+      <a href="#builds">Builds</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Fixed dashboard: tachometer + gear readout + shifter gate -->
+  <aside class="dash" aria-hidden="true">
+    <svg class="tach" viewBox="0 0 120 80">
+      <path class="arc" d="M15 70 A45 45 0 0 1 105 70" />
+      <line class="tick" x1="60" y1="29" x2="60" y2="36" transform="rotate(-60 60 70)" />
+      <line class="tick" x1="60" y1="29" x2="60" y2="36" transform="rotate(-20 60 70)" />
+      <line class="tick" x1="60" y1="29" x2="60" y2="36" transform="rotate(20 60 70)" />
+      <line class="tick" x1="60" y1="29" x2="60" y2="36" transform="rotate(60 60 70)" />
+      <line class="needle" x1="60" y1="70" x2="60" y2="33" style="transform:rotate(-82deg)" />
+      <circle class="hub" cx="60" cy="70" r="4" />
+    </svg>
+    <div class="readout"><span class="gear-no">N</span><span class="gear-name">Neutral</span></div>
+    <svg class="gate" viewBox="0 0 120 90">
+      <path class="lines" d="M30 12V78 M60 12V78 M90 12V78 M30 45H90" />
+      <g class="knob" style="transform:translate(60px,45px)"><circle r="8" /></g>
+    </svg>
+  </aside>
+
+  <main>
+    <!-- HERO (Neutral) -->
+    <section class="panel" data-gear="N" data-accent="#2f9bff" data-name="Neutral">
+      <div class="ghost" aria-hidden="true">Drive</div>
+      <div class="content wrap">
+        <p class="kicker">Classic · Custom · Exotic</p>
+        <h1 class="mega">Reconnecting<br />the <span class="hl">driver</span><span class="dot">.</span></h1>
+        <p class="sub">EV brought classic cars back to life. But along the way we lost the shifter — and the connection that came with it.</p>
+        <p class="scroll-cue">Scroll to shift <span>↓</span></p>
+      </div>
+    </section>
+
+    <!-- 1st gear: the revival -->
+    <section class="panel" id="story1" data-gear="1" data-accent="#2f9bff" data-name="First">
+      <div class="ghost" aria-hidden="true">Life</div>
+      <div class="content wrap story reveal">
+        <p class="label">01 — The revival</p>
+        <h2>EV brought them back to life.</h2>
+        <p>Electric power gave classic cars a second life: <span class="hl">clean, quick, reliable</span>, ready to drive every day. The hard part was solved.</p>
+      </div>
+    </section>
+
+    <!-- 2nd gear: what we lost -->
+    <section class="panel" id="story2" data-gear="2" data-accent="#ff7a1a" data-name="Second">
+      <div class="ghost" aria-hidden="true">Lost</div>
+      <div class="content wrap story reveal">
+        <p class="label">02 — What we lost</p>
+        <h2>But we lost the <span class="hl">shifter</span>.</h2>
+        <p>Somewhere in the swap, the gear lever disappeared. One speed, nothing to row, nothing to decide. The car got faster and quieter — and the driver got left out.</p>
+      </div>
+    </section>
+
+    <!-- 3rd gear: the shifter (sim-racing hardware) -->
+    <section class="panel" id="shifter" data-gear="3" data-accent="#00bfd7" data-name="Third">
+      <div class="ghost" aria-hidden="true">Row</div>
+      <div class="content wrap reveal">
+        <p class="label">03 — The shifter</p>
+        <h2 class="section-title">A real H-pattern, in your hand.</h2>
+        <p class="lead" style="margin-bottom:2rem;">The hardware is a sim-racing-grade H-pattern shifter, hand-built by a specialist in Wales. Proper gates, weighted detents, a real mechanical throw. It's the tactile half of the connection — the part you grab.</p>
+        <div class="media-slot">[ The shifter — photo / render ]</div>
+        <ul class="feat" style="margin-top:1.75rem;">
+          <li><b>True H-pattern gate</b> — row real gear positions by hand, no paddles</li>
+          <li><b>Sim-racing pedigree</b> — built for feel by a specialist shifter maker in Wales</li>
+          <li><b>Mechanical throw</b> — weighted gates and detents you can feel</li>
+          <li><b>Cabin-mounted</b> — sits where a gear lever belongs, in reach of your hand</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4th gear: the interface -->
+    <section class="panel" id="interface" data-gear="4" data-accent="#42d392" data-name="Fourth">
+      <div class="ghost" aria-hidden="true">Link</div>
+      <div class="content wrap reveal">
+        <p class="label">04 — The interface</p>
+        <h2 class="section-title">Our product: the interface.</h2>
+        <p class="lead" style="margin-bottom:2rem;">ThriEVe builds the brain that makes the shifter real. Our interface reads the gear you select and speaks to the car's electric drivetrain, so a shift genuinely changes how the motor behaves. No clutch, two pedals, all engagement.</p>
+        <div class="steps">
+          <div class="step"><div class="n">01</div><div><h3>Read</h3><p>The interface reads your gear position from the shifter, in real time.</p></div></div>
+          <div class="step"><div class="n">02</div><div><h3>Translate</h3><p>Each gear is mapped to its own torque curve and response — a distinct character, top to bottom.</p></div></div>
+          <div class="step"><div class="n">03</div><div><h3>Deliver</h3><p>The motor answers your hand: engine-braking feel on downshifts, instant torque underneath, a drivetrain that responds to the gear you chose.</p></div></div>
+        </div>
+        <ul class="feat" style="margin-top:1.75rem;">
+          <li><b>Drive-by-wire</b> — the shifter is electronically mapped to the motor</li>
+          <li><b>Tuned per gear</b> — each gear gets its own feel and power delivery</li>
+          <li><b>This is the product</b> — the interface, paired with the shifter, is what ThriEVe makes</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5th gear: builds -->
+    <section class="panel" id="builds" data-gear="5" data-accent="#a06bff" data-name="Fifth">
+      <div class="ghost" aria-hidden="true">Demos</div>
+      <div class="content wrap reveal">
+        <p class="label">05 — The demos</p>
+        <h2 class="section-title">Built to show off.</h2>
+        <p class="lead" style="margin-bottom:2rem;">We don't convert customer cars — we build demonstrators. Each one proves the shifter and interface across very different machines. Placeholder specs — swap in real photos and numbers.</p>
+        <div class="builds">
+          <article class="build"><div class="strip"></div><div class="body"><span class="tag">Demonstrator · AWD</span><h3>1990 Porsche 911</h3><div class="specs"><div><b>200</b>hp</div><div><b>100</b>mi</div><div><b>5.9s</b>0–60</div></div></div></article>
+          <article class="build"><div class="strip"></div><div class="body"><span class="tag">Demonstrator · AWD</span><h3>1974 Porsche 914</h3><div class="specs"><div><b>195</b>hp</div><div><b>105</b>mi</div><div><b>6.0s</b>0–60</div></div></div></article>
+          <article class="build"><div class="strip"></div><div class="body"><span class="tag">Demonstrator · AWD</span><h3>1985 Land Rover Defender</h3><div class="specs"><div><b>200</b>hp</div><div><b>95</b>mi</div><div><b>8.5s</b>0–60</div></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6th gear: contact -->
+    <section class="panel" id="contact" data-gear="6" data-accent="#ff5d73" data-name="Sixth">
+      <div class="ghost" aria-hidden="true">Hello</div>
+      <div class="content wrap reveal">
+        <p class="label">06 — Get in touch</p>
+        <h2 class="section-title">Shift us a line.</h2>
+        <div class="contact-grid">
+          <form class="form" data-thriev-form novalidate>
+            <div class="field-row">
+              <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" required autocomplete="name" placeholder="Your name" /></div>
+              <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="you@email.com" /></div>
+            </div>
+            <div class="field"><label for="subject">Subject</label><input id="subject" name="subject" type="text" required placeholder="What's this about?" /></div>
+            <div class="field"><label for="message">Message</label><textarea id="message" name="message" required placeholder="Tell us how we can help…"></textarea></div>
+            <button type="submit" class="btn">Send message</button>
+            <p class="form-note">We'll only use your details to reply. We never share them.</p>
+            <p class="form-status" role="status" hidden></p>
+          </form>
+          <div class="contact-info">
+            <div class="block"><h4>Email</h4><a href="mailto:hello@thrieveev.com">hello@thrieveev.com</a></div>
+            <div class="block"><h4>Phone</h4><a href="tel:+10000000000">+1 (000) 000-0000</a></div>
+            <div class="block"><h4>Shop</h4><p style="color:var(--muted);margin:0;">Placeholder Address<br />City, State 00000<br />Visits by appointment</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span class="brand">Thri<span class="ev">EV</span>e</span>
+    <a href="mailto:hello@thrieveev.com">hello@thrieveev.com</a>
+    <span>© <span data-year>2026</span> ThriEVe</span>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
