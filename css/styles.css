@@ -49,6 +49,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
 .brand .e { color: #ff5200; }
 .brand .v { color: #00bfd7; }
 .brand-text { display: inline-flex; flex-direction: column; line-height: 1; }
+.brand-name { white-space: nowrap; }
 .brand-tag { font-family: var(--body); font-size: 0.56rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
 .toplinks { display: flex; gap: 1.4rem; }
 .toplinks a {
