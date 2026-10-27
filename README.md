@@ -1,5 +1,8 @@
 # ThriEVe — Website
 
+**Live site:** https://sergio-pereira03.github.io/ThriEVe-Website/
+(GitHub Pages — auto-deploys on every push to `main`)
+
 Marketing site for **ThriEVe** — *Classic · Custom · Exotic*. ThriEVe's product is an
 **interface** — paired with a sim-racing H-pattern shifter hand-built in Wales — that
 brings a real, functional **manual shift to electric cars**, reconnecting the driver to
