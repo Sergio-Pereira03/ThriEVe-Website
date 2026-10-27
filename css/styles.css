@@ -93,6 +93,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
 .scroll-cue { margin-top: 2.5rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
 .scroll-cue span { color: var(--accent); transition: color .5s; }
 .slogan { font-family: var(--display); font-weight: 800; text-transform: uppercase; letter-spacing: -0.01em; color: var(--accent); font-size: clamp(1.05rem, 2.6vw, 1.6rem); line-height: 1.1; margin: 1.6rem 0 0; transition: color .5s; }
+.story .slogan { color: var(--accent); }
 .narrative { border-left: 3px solid var(--accent); padding-left: 1.4rem; max-width: 62ch; margin-top: 2rem; transition: border-color .5s; }
 .narrative p { font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--ink); line-height: 1.6; margin: 0 0 1rem; }
 .narrative p:last-child { margin-bottom: 0; }
