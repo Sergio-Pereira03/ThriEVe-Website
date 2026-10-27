@@ -82,7 +82,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
 .label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0 0 1.1rem; transition: color .5s; }
 .mega { text-transform: uppercase; font-size: clamp(3rem, 12vw, 8.5rem); line-height: 0.9; letter-spacing: -0.045em; }
 .mega .dot, .mega .hl { color: var(--accent); transition: color .5s; }
-.mega .lc { text-transform: none; }
+.lc { text-transform: none; }
 .sub { font-size: clamp(1.1rem, 2.2vw, 1.5rem); color: var(--muted); max-width: 40ch; margin: 1.5rem 0 0; line-height: 1.45; }
 .story h2 { font-size: clamp(2rem, 7vw, 4.25rem); text-transform: uppercase; line-height: 0.95; margin: 0 0 1.1rem; }
 .story p { font-size: clamp(1.1rem, 2.2vw, 1.45rem); color: var(--muted); max-width: 44ch; line-height: 1.45; margin: 0; }
