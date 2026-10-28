@@ -86,7 +86,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
 .dict-word { font-family: var(--display); font-weight: 800; font-size: clamp(2.2rem, 5.5vw, 3.6rem); letter-spacing: -0.03em; }
 .dict-pron { color: var(--muted); font-weight: 600; font-size: clamp(1.1rem, 2.4vw, 1.5rem); margin-inline: 0.5rem; }
 .dict-pos { color: var(--accent); font-style: italic; font-weight: 600; font-size: clamp(1.05rem, 2.2vw, 1.35rem); transition: color .5s; }
-.dict-def { color: var(--ink); font-weight: 600; font-size: clamp(1.2rem, 2.8vw, 1.8rem); line-height: 1.4; }
+.dict-def { color: var(--ink); font-style: italic; font-weight: 600; font-size: clamp(1.2rem, 2.8vw, 1.8rem); line-height: 1.4; }
 .dict-n { color: var(--ink); font-weight: 700; margin-right: 0.35rem; }
 .mega { text-transform: uppercase; font-size: clamp(3rem, 12vw, 8.5rem); line-height: 0.9; letter-spacing: -0.045em; }
 .mega .dot, .mega .hl { color: var(--accent); transition: color .5s; }
