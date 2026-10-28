@@ -51,8 +51,8 @@
   var gearName = document.querySelector(".readout .gear-name");
   var root = document.documentElement;
 
-  /* H-pattern positions for a 6-speed gate (viewBox 120x90) */
-  var gate = { N: [60, 45], "1": [30, 12], "2": [30, 78], "3": [60, 12], "4": [60, 78], "5": [90, 12], "6": [90, 78] };
+  /* H-pattern positions for a 7-speed gate (viewBox 150x90) */
+  var gate = { N: [75, 45], "1": [30, 12], "2": [30, 78], "3": [60, 12], "4": [60, 78], "5": [90, 12], "6": [90, 78], "7": [120, 12] };
   var NEEDLE_MIN = -82, NEEDLE_MAX = 82; /* degrees */
 
   var lastGear = null, ticking = false;
