@@ -74,7 +74,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
   z-index: 0; pointer-events: none; white-space: nowrap;
   font-family: var(--display); font-weight: 800; text-transform: uppercase;
   font-size: clamp(9rem, 34vw, 26rem); line-height: 0.8; letter-spacing: -0.04em;
-  color: var(--accent); opacity: 0.09; transition: color .5s; will-change: transform;
+  color: var(--accent); opacity: 0.14; transition: color .5s; will-change: transform;
 }
 
 /* ---- Type ------------------------------------------------- */
