@@ -221,6 +221,32 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
 }
 .btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
 
+/* ---- Photos ----------------------------------------------- */
+.photo { position: relative; margin: 0; overflow: hidden; border: 2px solid var(--line); border-radius: 16px; background: var(--panel); }
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo[data-parallax] img { inset: -10% 0; height: 120%; will-change: transform; }
+.split-photo { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+.split-photo > .photo { aspect-ratio: 3 / 2; }
+.split-photo > .photo.tall { aspect-ratio: 2 / 3; max-height: 80vh; }
+.shifter-photos { display: grid; grid-template-columns: 0.7fr 1.3fr; grid-template-rows: 1fr 1fr; gap: 1rem; margin-bottom: 1.75rem; }
+.shifter-photos .knob { grid-row: 1 / span 2; min-height: clamp(320px, 52vw, 640px); }
+.shifter-photos .knob img { object-position: 50% 60%; }
+.shifter-photos .wide, .shifter-photos .night { aspect-ratio: 3 / 2; }
+.shifter-photos .night img { object-position: 85% 68%; }
+.photo-hero { aspect-ratio: 16 / 9; margin-bottom: 1rem; }
+.photo-hero img { object-position: 50% 53%; }
+.photo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.75rem; }
+.photo-row .photo { aspect-ratio: 3 / 2; }
+.photo-row .roundel img { object-position: 50% 64%; }
+.contact-info .photo { aspect-ratio: 3 / 2; margin-bottom: 1.5rem; }
+@media (max-width: 720px) {
+  .split-photo { grid-template-columns: 1fr; }
+  .split-photo > .photo.tall { aspect-ratio: 4 / 5; max-height: none; }
+  .shifter-photos { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .shifter-photos .knob { grid-row: auto; min-height: 0; aspect-ratio: 4 / 5; }
+  .photo-row { grid-template-columns: 1fr; }
+}
+
 /* ---- Footer ----------------------------------------------- */
 .foot {
   display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
