@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" width="700" height="700">
+  <title>ThriEVe logo concept v2: shifter-gate E inside a V-arrow, ringed</title>
+  <defs>
+    <mask id="cutTop" maskUnits="userSpaceOnUse" x="150" y="150" width="320" height="180">
+      <rect x="150" y="150" width="320" height="180" fill="#fff"/>
+      <path d="M281 180V310M323 180V310" stroke="#000" stroke-width="7"/>
+    </mask>
+    <mask id="cutBottom" maskUnits="userSpaceOnUse" x="220" y="290" width="140" height="140">
+      <rect x="220" y="290" width="140" height="140" fill="#fff"/>
+      <path d="M276 300V392M304 300V392" stroke="#000" stroke-width="6"/>
+    </mask>
+  </defs>
+
+  <!-- rings -->
+  <circle cx="350" cy="350" r="318" fill="none" stroke="#2f9bff" stroke-width="14"/>
+  <circle cx="350" cy="350" r="292" fill="none" stroke="#00bfd7" stroke-width="3" opacity="0.7"/>
+
+  <g transform="translate(350 350) scale(0.96) translate(-306 -310)">
+    <!-- V: top edge, left arm, arrow arm -->
+    <path d="M105 135H505" stroke="#00bfd7" stroke-width="6" stroke-linecap="square"/>
+    <path d="M105 135H160L300 490Z" fill="#00bfd7"/>
+    <path d="M300 490L486 217L508 210V128L425 165L444 193Z" fill="#00bfd7" stroke-linejoin="round"/>
+
+    <!-- E: two shifter-gate blocks with H uprights -->
+    <g transform="translate(6 8) translate(304 250) scale(0.88) translate(-304 -250)">
+      <path d="M188.6 196.6L419.6 205.4L367 264Q296 303 226 271Z" fill="#ff5200" mask="url(#cutTop)"/>
+      <path d="M278 184H284V198H278ZM320 184H326V204H320Z" fill="#ff5200"/>
+      <path d="M241 311Q291 337 340 309L290 412Z" fill="#ff5200" mask="url(#cutBottom)"/>
+    </g>
+  </g>
+</svg>
