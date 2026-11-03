@@ -80,8 +80,9 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
 /* ---- Type ------------------------------------------------- */
 .kicker { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 1.1rem; transition: color .5s; }
 .label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0 0 1.1rem; transition: color .5s; }
-.hero-logo { display: block; width: 100%; max-width: 440px; height: auto; margin: 0 auto 1.8rem; }   /* phones: nearly the full width */
-@media (min-width: 700px) { .hero-logo { width: clamp(200px, 28vw, 300px); } }
+/* phones: almost edge to edge (8px each side), centred even though the page has side padding */
+.hero-logo { display: block; position: relative; left: 50%; transform: translateX(-50%); width: min(calc(100vw - 16px), 520px); max-width: none; height: auto; margin: 0 0 1.8rem; }
+@media (min-width: 700px) { .hero-logo { position: static; transform: none; width: clamp(200px, 28vw, 300px); max-width: 100%; margin: 0 auto 1.8rem; } }
 .hero-logo + .dict { margin-top: 0; }
 .dict { max-width: 60ch; margin: -9vh auto 2.5rem; padding-bottom: 1.5rem; text-align: center; border-bottom: 3px solid var(--accent); transition: border-color .5s; }
 .dict p { margin: 0; }
