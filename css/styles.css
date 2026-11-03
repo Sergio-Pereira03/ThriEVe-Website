@@ -85,7 +85,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
 @media (min-width: 700px) { .hero-logo { position: static; transform: none; width: clamp(280px, 36vw, 460px); max-width: 100%; margin: 0 auto 1.8rem; } }
 /* phones: trim the dead space around the hero (top padding, gap under the definition) */
 @media (max-width: 699px) {
-  .panel:first-of-type { padding-top: 4.25rem; }
+  .panel:first-of-type { padding-top: 0.25rem; }
   .panel:first-of-type .kicker { margin-bottom: 0.5rem; }
 }
 .hero-logo + .dict { margin-top: 0; }
