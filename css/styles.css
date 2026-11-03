@@ -82,15 +82,22 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
 .label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0 0 1.1rem; transition: color .5s; }
 /* phones: almost edge to edge (8px each side), centred even though the page has side padding */
 .hero-logo { display: block; position: relative; left: 50%; transform: translateX(-50%); width: min(calc(100vw - 16px), 520px); max-width: none; height: auto; margin: 0 0 1.8rem; }
-@media (min-width: 700px) { .hero-logo { position: static; transform: none; width: clamp(200px, 28vw, 300px); max-width: 100%; margin: 0 auto 1.8rem; } }
+@media (min-width: 700px) { .hero-logo { position: static; transform: none; width: clamp(280px, 36vw, 460px); max-width: 100%; margin: 0 auto 1.8rem; } }
+/* phones: trim the dead space around the hero (top padding, gap under the definition) */
+@media (max-width: 699px) {
+  .panel:first-of-type { padding-top: 4.25rem; }
+  .panel:first-of-type .kicker { margin-bottom: 0.5rem; }
+}
 .hero-logo + .dict { margin-top: 0; }
 .dict { max-width: 60ch; margin: -9vh auto 2.5rem; padding-bottom: 1.5rem; text-align: center; border-bottom: 3px solid var(--accent); transition: border-color .5s; }
+@media (max-width: 699px) { .dict { margin-bottom: 1rem; padding-bottom: 1rem; } }
 .dict p { margin: 0; }
 .dict-head { margin-bottom: 0.5rem !important; }
 .dict-word { font-family: var(--display); font-weight: 800; font-size: clamp(2.2rem, 5.5vw, 3.6rem); letter-spacing: -0.03em; }
 .dict-pron { color: var(--muted); font-weight: 600; font-size: clamp(1.1rem, 2.4vw, 1.5rem); margin-inline: 0.5rem; }
 .dict-pos { color: var(--accent); font-style: italic; font-weight: 600; font-size: clamp(1.05rem, 2.2vw, 1.35rem); transition: color .5s; }
 .dict-def { color: var(--ink); font-style: italic; font-weight: 600; font-size: clamp(1.2rem, 2.8vw, 1.8rem); line-height: 1.4; }
+.dict-vig { display: inline-block; margin-top: 0.15em; font-weight: 800; font-size: 1.4em; line-height: 1.2; }
 .dict-n { color: var(--ink); font-weight: 700; margin-right: 0.35rem; }
 .mega { text-transform: uppercase; font-size: clamp(3rem, 12vw, 8.5rem); line-height: 0.9; letter-spacing: -0.045em; }
 .mega .dot, .mega .hl { color: var(--accent); transition: color .5s; }
