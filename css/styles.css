@@ -45,7 +45,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
   display: inline-flex; align-items: center; gap: 0.55rem;
   font-family: var(--display); font-weight: 800; font-size: 1.4rem; letter-spacing: -0.04em; line-height: 1;
 }
-.brand-mark { height: 1.9em; width: auto; display: block; }
+.brand-mark { height: 2.7em; width: auto; display: block; }
 .e { color: #ff5200; }
 .v { color: #00bfd7; }
 .brand-text { display: inline-flex; flex-direction: column; line-height: 1; }
