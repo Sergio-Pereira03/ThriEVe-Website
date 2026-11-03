@@ -20,8 +20,10 @@ Thrive Website/            (folder name is historical; the brand is ThriEVe)
 ├─ css/styles.css  # Design system: tokens, panels, dashboard, per-gear color, parallax
 ├─ js/main.js      # Scroll engine (gear + tach + color + parallax), reveal, contact form
 └─ assets/
-   ├─ ev-symbol.png  # Logo used in the header (29 KB, exported from the .ai/.svg)
-   └─ ev-symbol.svg  # Original vector mark (large; kept as source)
+   ├─ thrieve-logo-wide.svg  # White logo (wide-letters version): header mark + top of the hero
+   ├─ logo-concepts/         # Black logo versions (words / no words / emblem only) for other uses
+   ├─ ev-symbol.png          # Old logo (no longer used on the page)
+   └─ ev-symbol.svg          # Old vector mark (kept as source)
 ```
 
 ## How it works
