@@ -20,6 +20,7 @@ Thrive Website/            (folder name is historical; the brand is ThriEVe)
 ├─ css/styles.css  # Design system: tokens, panels, dashboard, per-gear color, parallax
 ├─ js/main.js      # Scroll engine (gear + tach + color + parallax), reveal, contact form
 └─ assets/
+   ├─ thrieve-emblem.svg     # White one-colour emblem only: header mark
    ├─ thrieve-logo-wide.svg  # Full-colour logo (metallic emblem, white ring + wide words): top of the hero
    └─ logo-concepts/         # Logo versions (black masters, gradient emblem parts file used as the header mark, colour ring versions)
 ```
