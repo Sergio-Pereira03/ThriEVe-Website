@@ -240,11 +240,15 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
 .split-photo { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
 .split-photo > .photo { aspect-ratio: 3 / 2; }
 .split-photo > .photo.tall { aspect-ratio: 2 / 3; max-height: 80vh; }
-.shifter-photos { display: grid; grid-template-columns: 0.7fr 1.3fr; grid-template-rows: 1fr 1fr; gap: 1rem; margin-bottom: 1.75rem; }
-.shifter-photos .knob { grid-row: 1 / span 2; min-height: clamp(320px, 52vw, 640px); }
-.shifter-photos .knob img { object-position: 50% 60%; }
-.shifter-photos .wide, .shifter-photos .night { aspect-ratio: 3 / 2; }
-.shifter-photos .night img { object-position: 85% 68%; }
+.shifter-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 2rem; align-items: start; }
+.shifter-photos .photo { aspect-ratio: 3 / 4; }
+.shifter-photos .knob img { object-position: 50% 62%; }
+.shifter-photos .wide img { object-position: 55% 50%; }
+.shifter-photos .night img { object-position: 60% 68%; }
+.shot-text { padding: 0.9rem 0.15rem 0; }
+.shot-text h3 { font-size: clamp(1.25rem, 2.4vw, 1.7rem); text-transform: uppercase; margin-bottom: 0.35rem; }
+.shot-text .num { color: var(--accent); margin-right: 0.15em; transition: color .5s; }
+.shot-text p { margin: 0; color: var(--muted); font-size: clamp(1rem, 1.6vw, 1.15rem); line-height: 1.4; }
 .photo-hero { aspect-ratio: 16 / 9; margin-bottom: 1rem; }
 .photo-hero img { object-position: 50% 53%; }
 .demo-intro { margin-bottom: 1.75rem; }
@@ -259,8 +263,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
 @media (max-width: 720px) {
   .split-photo { grid-template-columns: 1fr; }
   .split-photo > .photo.tall { aspect-ratio: 4 / 5; max-height: none; }
-  .shifter-photos { grid-template-columns: 1fr; grid-template-rows: auto; }
-  .shifter-photos .knob { grid-row: auto; min-height: 0; aspect-ratio: 4 / 5; }
+  .shifter-photos { grid-template-columns: 1fr; gap: 1.75rem; }
+  .shifter-photos .photo { aspect-ratio: 4 / 5; }
   .photo-row { grid-template-columns: 1fr; }
 }
 
