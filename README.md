@@ -21,8 +21,7 @@ Thrive Website/            (folder name is historical; the brand is ThriEVe)
 ├─ js/main.js      # Scroll engine (gear + tach + color + parallax), reveal, contact form
 └─ assets/
    ├─ thrieve-logo-wide.svg  # White logo (wide-letters version): top of the hero
-   ├─ thrieve-no-words.svg   # White ring + emblem, no words: header mark
-   ├─ thrieve-emblem.svg     # White emblem only (previous header mark, kept in case we switch back)
+   ├─ thrieve-emblem.svg     # White emblem only: header mark
    └─ logo-concepts/         # Black logo versions (words / no words / emblem only) for other uses
 ```
 
