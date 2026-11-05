@@ -5,6 +5,9 @@ D=float(sys.argv[1]) if len(sys.argv)>1 else 50.0
 OW=float(sys.argv[2]) if len(sys.argv)>2 else 5.0          # outline width in artwork units (958 = ring diameter)
 L=r"C:\Thrive Website\assets\logo-concepts"; INK=r"C:\Program Files\Inkscape\bin\inkscape.exe"
 OUT=os.path.dirname(os.path.abspath(__file__))
+EMB=os.environ.get("EMB","solid")          # solid = emblem lines filled dark blue; bold = white core + heavy dark blue outline
+BOLD=float(os.environ.get("BOLDW",12))
+TAG="" if EMB=="solid" else "-bold-outline"
 s=open(os.path.join(L,"thrieve-words-inner-circle-black.svg"),encoding="utf-8").read()
 P={k:parse_path(re.search(r'<g id="%s"><path[^>]*?\sd="([^"]+)"'%k,s).group(1)) for k in ("ring","ring-inner","emblem","text-top","text-left","text-right")}
 CX=CY=479.0
@@ -20,7 +23,8 @@ letters=[[o]+[h for h in holes if inside(h,o)] for o in outers]
 names=["T","H","R","I","E","V","E2"]; fillc={"E":"orange","V":"teal"}
 # (name, fill colour, stroke colour or None, subpaths)  bottom -> top
 layers=[("ring","blue",None,P["ring"].continuous_subpaths()),("ring-inner","blue",None,P["ring-inner"].continuous_subpaths()),
-        ("emblem","white","blue",P["emblem"].continuous_subpaths())]
+        ("emblem","blue" if EMB=="solid" else "white","blue",P["emblem"].continuous_subpaths())]
+WID={"emblem":BOLD} if EMB=="bold" else {}
 layers+=[(f"letter-{n}",fillc.get(n,"white"),"blue",ls) for n,ls in zip(names,letters)]
 layers+=[("text-left","white","blue",P["text-left"].continuous_subpaths()),("text-right","white","blue",P["text-right"].continuous_subpaths())]
 def arc_cubics(a):
@@ -41,17 +45,6 @@ def fix_arcs(subpaths):
                 for c1,c2,e in arc_cubics(g): seg.append("C %.4f %.4f %.4f %.4f %.4f %.4f"%(c1.real,c1.imag,c2.real,c2.imag,e.real,e.imag))
         out.append(" ".join(seg)+" Z")
     return " ".join(out)
-def outline_shape(sps,name):
-    t=os.path.join(OUT,"_o.svg"); u=os.path.join(OUT,"_o2.svg")
-    open(t,"w",encoding="utf-8").write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 958 958"><path d="{fix_arcs(sps)}" fill="none" stroke="#000" stroke-width="{OW}" stroke-linejoin="round" stroke-linecap="round"/></svg>')
-    subprocess.run([INK,t,"--actions=select-all:all;object-to-path;select-all:all;object-stroke-to-path;select-all:all;selection-ungroup;select-all:all;selection-ungroup;select-all:all;path-union;"
-                    f"export-filename:{u};export-plain-svg;export-do"],check=True,capture_output=True)
-    p=re.findall(r'<path[^>]*?\sd="([^"]+)"',re.sub(r'<defs.*?</defs>','',open(u,encoding="utf-8").read(),flags=re.S)); assert len(p)==1,(name,len(p))
-    os.remove(t); os.remove(u); return parse_path(p[0]).continuous_subpaths()
-layers2=[]
-for n,fc,sc,sps in layers:
-    layers2.append((n,fc,sps))
-    if sc: layers2.append((n+"-outline",sc,outline_shape(sps,n)))
 def pdf_path(subpaths,S,H):
     f=lambda z:"%.4f %.4f"%(z.real*S,H-z.imag*S); o=[]
     for sp in subpaths:
@@ -65,15 +58,18 @@ def pdf_path(subpaths,S,H):
     return "\n".join(o)
 def svg(pv=None):
     g=[]
-    for n,fc,sps in layers2:
-        g.append(f'  <g id="{n}"><path fill="{RGB[fc]}" fill-rule="evenodd" d="{fix_arcs(sps)}"/></g>')
+    for n,fc,sc,sps in layers:
+        st=f' stroke="{RGB[sc]}" stroke-width="{WID.get(n,OW)}" stroke-linejoin="round"' if sc else ""
+        g.append(f'  <g id="{n}"><path fill="{RGB[fc]}" fill-rule="evenodd"{st} d="{fix_arcs(sps)}"/></g>')
     vb="-30 -30 1018 1018" if pv else "0 0 958 958"
     back=f'<rect x="-30" y="-30" width="1018" height="1018" fill="{pv}"/>' if pv else ""
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" width="{D}mm" height="{D}mm">\n{back}\n'+"\n".join(g)+"\n</svg>\n"
-open(os.path.join(OUT,"thrieve-sticker-v3-editable.svg"),"w",encoding="utf-8").write(svg())
+open(os.path.join(OUT,f"thrieve-sticker-v3{TAG}-editable.svg"),"w",encoding="utf-8").write(svg())
 def pdf(fn):
     W=D*72/25.4; S=W/958.0; H=W; f4=lambda c:"%.4f %.4f %.4f %.4f"%CM[c]; cs=["1 j 1 J"]
-    for n,fc,sps in layers2: cs.append(f"{f4(fc)} k\n"+pdf_path(sps,S,H)+"\nf*")
+    for n,fc,sc,sps in layers:
+        if sc: cs.append(f"{f4(fc)} k\n{f4(sc)} K\n{WID.get(n,OW)*S:.4f} w\n"+pdf_path(sps,S,H)+"\nB*")
+        else:  cs.append(f"{f4(fc)} k\n"+pdf_path(sps,S,H)+"\nf*")
     stream="\n".join(cs).encode()
     objs=[b"<< /Type /Catalog /Pages 2 0 R >>",b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
           f"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 {W:.4f} {H:.4f}] /TrimBox [0 0 {W:.4f} {H:.4f}] /Contents 4 0 R /Resources << >> >>".encode(),
@@ -81,8 +77,8 @@ def pdf(fn):
     out=bytearray(b"%PDF-1.4\n%\xe2\xe3\xcf\xd3\n"); off=[]
     for i,o in enumerate(objs,1): off.append(len(out)); out+=f"{i} 0 obj\n".encode()+o+b"\nendobj\n"
     x=len(out); out+=f"xref\n0 {len(objs)+1}\n0000000000 65535 f \n".encode()+"".join("%010d 00000 n \n"%o for o in off).encode()
-    out+=f"trailer\n<< /Size {len(objs)+1} /Root 1 0 R /Info << /Title (ThriEVe trunk sticker v3) >> >>\nstartxref\n{x}\n%%EOF\n".encode()
+    out+=f"trailer\n<< /Size {len(objs)+1} /Root 1 0 R /Info << /Title (ThriEVe trunk sticker v2) >> >>\nstartxref\n{x}\n%%EOF\n".encode()
     open(os.path.join(OUT,fn),"wb").write(out)
-pdf(f"thrieve-sticker-v3-{D:g}mm-white-vinyl-CMYK.pdf")
-t=os.path.join(OUT,"_p.svg"); open(t,"w",encoding="utf-8").write(svg("#ffffff")); subprocess.run([INK,t,"-o",os.path.join(OUT,"thrieve-sticker-v3-preview.png"),"-w","1400"],check=True,capture_output=True); os.remove(t)
+pdf(f"thrieve-sticker-v3{TAG}-{D:g}mm-white-vinyl-CMYK.pdf")
+t=os.path.join(OUT,"_p.svg"); open(t,"w",encoding="utf-8").write(svg("#ffffff")); subprocess.run([INK,t,"-o",os.path.join(OUT,f"thrieve-sticker-v3{TAG}-preview.png"),"-w","1400"],check=True,capture_output=True); os.remove(t)
 print("ok",D,OW)
