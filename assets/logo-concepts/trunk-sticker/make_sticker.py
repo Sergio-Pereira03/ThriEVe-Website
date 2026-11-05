@@ -73,16 +73,18 @@ def svg(bg=False,pv=False):
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" width="{D}mm" height="{D}mm">\n{back}\n'+"\n".join(g)+"\n</svg>\n"
 open(os.path.join(OUT,"thrieve-trunk-sticker-editable.svg"),"w",encoding="utf-8").write(svg())
 # ---- PDF: true DeviceCMYK, vector, 1 page, page = artwork (ring diameter D mm)
-def pdf(fn,bg,inv=False):
+def pdf(fn,bg,inv=False,spot=False):
     W=D*72/25.4; S=W/958.0; H=W
-    k=lambda c:"%.4f %.4f %.4f %.4f k"%CM[c]
+    k=lambda c:("/CS0 cs 1 scn" if (spot and c=="white") else "%.4f %.4f %.4f %.4f k"%CM[c])
     cs=[]
     if bg: cs.append(k("white" if inv else "black")+"\n"+pdf_path([parse_path(f"M {CX-CX} {CY} A {CX} {CX} 0 1 0 {CX+CX} {CY} A {CX} {CX} 0 1 0 {CX-CX} {CY} Z").continuous_subpaths()[0]],S,H)+"\nf*")
     for n,c,sps in layers: cs.append(k("black" if (inv and c=="white") else c)+"\n"+pdf_path(sps,S,H)+"\nf*")
     stream="\n".join(cs).encode()
+    RES="/ColorSpace << /CS0 [/Separation /White /DeviceCMYK 5 0 R] >>" if spot else ""
     objs=[b"<< /Type /Catalog /Pages 2 0 R >>", b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
-          f"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 {W:.4f} {H:.4f}] /TrimBox [0 0 {W:.4f} {H:.4f}] /Contents 4 0 R /Resources << >> >>".encode(),
+          f"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 {W:.4f} {H:.4f}] /TrimBox [0 0 {W:.4f} {H:.4f}] /Contents 4 0 R /Resources << {RES} >> >>".encode(),
           b"<< /Length %d >>\nstream\n"%len(stream)+stream+b"\nendstream"]
+    if spot: objs.append(b"<< /FunctionType 2 /Domain [0 1] /C0 [0 0 0 0] /C1 [0 0 0 0.3] /N 1 >>")
     out=bytearray(b"%PDF-1.4\n%\xe2\xe3\xcf\xd3\n"); off=[]
     for i,o in enumerate(objs,1): off.append(len(out)); out+=f"{i} 0 obj\n".encode()+o+b"\nendobj\n"
     x=len(out); out+=f"xref\n0 {len(objs)+1}\n0000000000 65535 f \n".encode()+"".join("%010d 00000 n \n"%o for o in off).encode()
@@ -90,6 +92,7 @@ def pdf(fn,bg,inv=False):
     open(os.path.join(OUT,fn),"wb").write(out)
 pdf(f"thrieve-trunk-sticker-{D:g}mm-no-background-CMYK.pdf",False)
 pdf(f"thrieve-trunk-sticker-{D:g}mm-on-black-CMYK.pdf",True)
+pdf(f"thrieve-trunk-sticker-{D:g}mm-transparent-WHITE-spot-CMYK.pdf",False,False,True)
 pdf(f"thrieve-trunk-sticker-{D:g}mm-on-white-black-artwork-CMYK.pdf",True,True)
 # previews (RGB approximations, on grey and on black)
 for nm,bg,pv in (("preview-on-grey",False,True),("preview-on-black",True,True)):
