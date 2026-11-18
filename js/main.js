@@ -51,7 +51,6 @@
   var gearName = document.querySelector(".readout .gear-name");
   var root = document.documentElement;
   var pimgs = Array.prototype.slice.call(document.querySelectorAll(".photo[data-parallax] img"));
-  var hlogo = document.querySelector(".hero-logo");
 
   /* H-pattern positions for a 7-speed gate (viewBox 150x90) */
   var gate = { N: [75, 45], "1": [30, 12], "2": [30, 78], "3": [60, 12], "4": [60, 78], "5": [90, 12], "6": [90, 78], "7": [120, 12] };
@@ -105,13 +104,6 @@
         }
       }
 
-      /* Hero logo: fades out as it scrolls away under the header */
-      if (hlogo) {
-        var lh = hlogo.offsetHeight || vh;
-        var fade = 1 - Math.min(1, Math.max(0, sy / (lh * 0.6)));
-        hlogo.style.opacity = fade.toFixed(3);
-        hlogo.style.scale = (0.88 + 0.12 * fade).toFixed(3);
-      }
 
       /* Photos: the image slides slowly inside its frame while the frame scrolls normally */
       for (var k = 0; k < pimgs.length; k++) {

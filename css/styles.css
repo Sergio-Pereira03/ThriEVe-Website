@@ -82,14 +82,31 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
 .label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0 0 1.1rem; transition: color .5s; }
 /* phones: almost edge to edge (8px each side), centred even though the page has side padding */
 .hero-logo { display: block; position: relative; left: 50%; transform: translateX(-50%); width: min(calc(100vw - 16px), 520px); max-width: none; height: auto; margin: 0 0 1.8rem; }
-@media (min-width: 700px) { .hero-logo { position: static; transform: none; width: clamp(280px, 36vw, 460px); max-width: 100%; margin: 0 auto 1.8rem; } }
-.hero-logo { animation: logo-in 2s cubic-bezier(0.2, 0.7, 0.2, 1); }
-@keyframes logo-in { from { opacity: 0; scale: 0.82; filter: blur(14px); } to { opacity: 1; scale: 1; filter: blur(0); } }
+@media (min-width: 700px) { .hero-logo { position: relative; left: auto; transform: none; width: clamp(280px, 36vw, 460px); max-width: 100%; margin: 0 auto 1.8rem; } }
 /* phones: trim the dead space around the hero (top padding, gap under the definition) */
 /* hero starts directly under the header on every screen size */
 .panel:first-of-type { padding-top: 0; align-items: flex-start; }
 @media (max-width: 699px) {
   .panel:first-of-type .kicker { margin-bottom: 0.5rem; }
+}
+/* hero logo: white outline fades in, then a diagonal wipe reveals the colour version */
+.hero-logo { aspect-ratio: 1 / 1; }
+.hero-logo img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; max-width: none; }
+.logo-outline { animation: outline-in 3.4s ease-out both; }
+.logo-color {
+  -webkit-mask-image: linear-gradient(135deg, #000 0%, #000 45%, transparent 55%, transparent 100%); mask-image: linear-gradient(135deg, #000 0%, #000 45%, transparent 55%, transparent 100%);
+  -webkit-mask-size: 250% 250%; mask-size: 250% 250%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  animation: logo-wipe 1.5s ease-in-out 1.3s both;
+}
+@keyframes outline-in {
+  0% { opacity: 0; scale: 0.9; filter: blur(10px); }
+  30% { opacity: 1; scale: 1; filter: blur(0); }
+  78% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes logo-wipe {
+  from { -webkit-mask-position: 100% 100%; mask-position: 100% 100%; }
+  to { -webkit-mask-position: 0% 0%; mask-position: 0% 0%; }
 }
 .hero-logo + .dict, .hero-tag + .dict { margin-top: 0; }
 .hero-tag { max-width: 60ch; margin: 0 auto 2rem; text-align: center; }
@@ -302,5 +319,6 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
   html { scroll-behavior: auto; }
   .reveal { opacity: 1 !important; transform: none !important; }
   .ghost { transition: none !important; }
-  .hero-logo { animation: none !important; }
+  .logo-outline { display: none; }
+  .logo-color { animation: none !important; -webkit-mask-image: none; mask-image: none; }
 }
