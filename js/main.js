@@ -108,8 +108,9 @@
       /* Hero logo: fades out as it scrolls away under the header */
       if (hlogo) {
         var lh = hlogo.offsetHeight || vh;
-        var fade = 1 - Math.min(1, Math.max(0, (sy - lh * 0.1) / (lh * 0.8)));
+        var fade = 1 - Math.min(1, Math.max(0, sy / (lh * 0.6)));
         hlogo.style.opacity = fade.toFixed(3);
+        hlogo.style.scale = (0.88 + 0.12 * fade).toFixed(3);
       }
 
       /* Photos: the image slides slowly inside its frame while the frame scrolls normally */
